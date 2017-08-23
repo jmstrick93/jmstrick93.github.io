@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Clarke's Second Law"
-date:   2017-08-23 13:35:24 +0000
+date:   2017-08-23 09:35:24 -0400
 ---
 
 
@@ -20,5 +20,5 @@ So, during my brief foray into programming back in the summer of 2015, shortly a
 As it turns out, I enjoyed every minute of it.  I enjoyed it because it allowed me to combine my passion for languages, the satisfaction I get from practical problem-solving, and my need for creative expression all into one activity that would actually pay the bills.  Having spent a year working a demanding paralegal job that basically did not involve any of these things, I understood the value of what I had found.  Most people work for a living, but very few ever find work that they can honestly say they love.  Just a few years ago, making this change would have been nearly impossible, but I am lucky enough to live in a time where a wealth of information is just a click away.  I am very lucky that this opportunity has been presented to me, and I am going to take it.
 
 
-*The only way of discovering the limits of the possible is to venture a little way past them into the impossible. - Arthur C. Clarke's Second Law*
+*"The only way of discovering the limits of the possible is to venture a little way past them into the impossible." - Arthur C. Clarke's Second Law*
 
