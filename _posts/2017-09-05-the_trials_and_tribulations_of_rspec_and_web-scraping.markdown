@@ -1,0 +1,18 @@
+---
+layout: post
+title:  "The Trials and Tribulations of RSpec and Web-Scraping"
+date:   2017-09-05 14:59:44 +0000
+---
+
+
+When I started this project, I had a relatively ambitous idea: a piece of software that would scrape the top headlines from ten or eleven different news websites of all different political persuasions, with the intention of giving the user a snapshot of the American news-media ecosystem in a given moment.  My original concept contained three layers of menu options, and had a complete, fully-functioning RSpec suite.  On top of that, I wanted to be able to create this all in one week.
+
+It turns out that my eyes had been a little bigger than my stomach on this one, moreso with the deadline than the content and functionality.  I began this project on a Monday, and come Thursday evening I had created a mostly-functioning series of menus that did no real web-scraping, instead only producing hard-coded content.  I was falling behind because most of my time had been spent learning how to use RSpec and trying to take a behavior-driven development (BDD) approach.  I eventually ran into problems with infinite loops occurring in my RSpec suite when trying to test certain aspects of the menus and the user interface and, given my time constraints, was forced to abandon the RSpec approach for now.  Still, doing so in the first portion of my project gave me some experience using a test-driven approach.  That should prove very valuable down the road.
+
+The actual web-scraping procedure turned out being easier for me than building RSpec tests, but I ran in to some difficulties rooted in confusion I was having about the distinction between a website's HTML code and it's DOM.  On Saturday I went to a Coffee and Code session at the Motley Fool's offices in Alexandria, VA, where a fellow coding enthusiast helped coach me on the difference between these two concepts.  
+
+The problem this false equivocation had created for me was that I was trying to code my Nokogiri CSS methods to retrieve elements based on what I was seeing in the website's DOM, not its HTML source code.  It became apparent that something was wrong when I had difficulty scraping the CNN website, on which [the navbars were included in the HTML source but all of the page's substantial content was rendered after that loads](https://imgur.com/WR3gEDm) (possibly using Javascript).  Again, given the deadline I had set for myself, I decided to scrape the Reuters news website instead.  
+
+The final product ended up about as well as I could have hoped -- it scrapes the top headlines from the websites of CNN, Fox News, and MSNBC, and allows you to go another level deep to look at that article's description and some of its metadata (it turned out that most news websites store metadata for their articles on "meta" html elements, which made the individual articles much easier to scrape than their headlines on networks' homepages).  Also, since the basic user-interface and object-orientation aspects are well crafted, it would be quite easy to add more news networks, simply by creating the proper Scraper methods that are based on the ones that already exist.  The rest would take care of itself.
+
+I plan to publish this gem in its current form in order to meet my deadline, but I also plan to add some expansions to it later.  I created it because I enjoy keeping tabs on America's information environment, and using it allows me to do so without needing to look at 5-6 websites, some of which I would generally prefer not to visit.  Perhaps others with similar interests will contribute to the project as well.
