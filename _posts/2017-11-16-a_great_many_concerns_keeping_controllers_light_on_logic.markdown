@@ -54,8 +54,8 @@ and moved it into my ApplicationRecord model, like so:
 ...
 
 def success_message(action_name)
-		flash.clear
-		flash[:notice] =#{self.full_title} successfully #{action_name}ed"
+	flash.clear
+	flash[:notice] =#{self.full_title} successfully #{action_name}ed"
 end
 ```
 
@@ -63,8 +63,8 @@ This however, did not work at first, because ```flash``` is not available in mod
 
 ```
 def success_message(action_name, flash)
-		flash.clear
-		flash[:notice] =#{self.full_title} successfully #{action_name}ed"
+	flash.clear
+	flash[:notice] =#{self.full_title} successfully #{action_name}ed"
 end
 ```
 
@@ -82,8 +82,8 @@ So I was able to refactor my method to be DRYer and more versatile, like so:
 
 ```
 def success_message(object, action_name)
-		flash.clear
-		flash[:notice] =#{object.full_title} successfully #{action_name}ed"
+	flash.clear
+	flash[:notice] =#{object.full_title} successfully #{action_name}ed"
 end
 ```
 
@@ -98,9 +98,9 @@ This is a bit awkward.  Luckily I was able to use my vast knowledge of Ruby arra
 
 ```
 def success_message(object, action_name)
-		flash.clear
-		action_name[0...-1] if action_name[-1] == "e"
-		flash[:notice] = "#{object.full_title} successfully #{action_name}ed"
+	flash.clear
+	action_name[0...-1] if action_name[-1] == "e"
+	flash[:notice] = "#{object.full_title} successfully #{action_name}ed"
 end
 ```
 
@@ -109,17 +109,17 @@ Voila! Now we have a flexible success-message helper that can be used in most of
 Next, I took the copious amount of logic that I had improperly hidden away in my ApplicationController and put it where it belonged, in 'concerns'.  Some new methods I added, similar to those above, were:
 
 ```
-		def flash_errors_and_heading(object)
-				flash[:alert] = view_context.pluralize(object.errors.count, 'error')+ " prevented this #{object.class} from saving: "
-				prep_flash_errors(object)
-		end
+def flash_errors_and_heading(object)
+	flash[:alert] = view_context.pluralize(object.errors.count, 'error')+ " prevented this #{object.class} from saving: "
+		prep_flash_errors(object)
+	end
 
-		def prep_flash_errors(object)
-					flash[:error] ||= []
-					object.errors.full_messages.each do |error|
-							flash[:error] << error
-					end
-		end
+def prep_flash_errors(object)
+	flash[:error] ||= []
+	object.errors.full_messages.each do |error|
+		flash[:error] << error
+	end
+end
 ```
 
 
