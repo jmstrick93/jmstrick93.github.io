@@ -10,31 +10,31 @@ After a week of coding, wrestling with nested forms, and furious debugging, I ha
 
 ```  
 def update
-		@car = Car.find_by(id: params[:id])
-		@car.assign_attributes(car_params)
-		if !@car.brand.valid?
-				if !!car_params[:brand_id] && !car_params[:brand_id].empty?
-						@car.brand = Brand.find_by(id: car_params[:brand_id])
-				end
+	@car = Car.find_by(id: params[:id])
+	@car.assign_attributes(car_params)
+	if !@car.brand.valid?
+		if !!car_params[:brand_id] && !car_params[:brand_id].empty?
+			@car.brand = Brand.find_by(id: car_params[:brand_id])
+		end
+	else
+		@car.brand.save
+		@car.brand_id = @car.brand.id
+	end
+	#weeds out any invalid car types
+	@car.car_types = @car.car_types.reject {|type| type.id.blank?}
+		if @car.save
+			flash.clear
+			flash[:notice] = "#{@car.full_title} successfully updated"
+			redirect_to car_path(@car)
 		else
-				@car.brand.save
-				@car.brand_id = @car.brand.id
+			flash[:alert] = view_context.pluralize(@car.errors.count, 'error')+ " prevented this car from saving: "
+			flash[:error] ||= []
+			object.errors.full_messages.each do |error|
+				flash[:error] << error
+			end
+			render 'cars/edit'
 		end
-		#weeds out any invalid car types
-		@car.car_types = @car.car_types.reject {|type| type.id.blank?}
-				if @car.save
-						flash.clear
-						flash[:notice] = "#{@car.full_title} successfully updated"
-						redirect_to car_path(@car)
-				else
-						flash[:alert] = view_context.pluralize(@car.errors.count, 'error')+ " prevented this car from saving: "
-						flash[:error] ||= []
-						object.errors.full_messages.each do |error|
-							flash[:error] << error
-						end
-						render 'cars/edit'
-				end
-		end
+	end
 end
 ```
 
