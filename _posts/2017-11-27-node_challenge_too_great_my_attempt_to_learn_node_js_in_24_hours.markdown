@@ -1,7 +1,7 @@
 ---
 layout: post
 title:      "Node Challenge Too Great:  My attempt to learn Node.js in 24 hours"
-date:       2017-11-28 00:20:30 +0000
+date:       2017-11-27 19:20:31 -0500
 permalink:  node_challenge_too_great_my_attempt_to_learn_node_js_in_24_hours
 ---
 
