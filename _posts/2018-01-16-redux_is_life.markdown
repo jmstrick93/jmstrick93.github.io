@@ -50,9 +50,7 @@ Then, after checking making sure that there was no change in length or size (i.e
 componentDidUpdate(prevProps, prevState){
     let lengthChange
     let sidesChange
-		
-    prevProps.dice.length === this.props.dice.length ? lengthChange = false : lengthChange = true
-		
+    prevProps.dice.length === this.props.dice.length ? lengthChange = false : lengthChange = truee
     if (lengthChange === false && this.props.dice.length > 0){
       let index = 0
       for (const die of this.props.dice){
