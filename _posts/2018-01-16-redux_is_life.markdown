@@ -43,7 +43,7 @@ componentDidUpdate(prevProps, prevState){
       };
     }
 		
-		...
+...
 ```
 
 This basically checked to see whether, the update was triggered due to a change in the number of dice or the change in the number of sides on one or more of the dice.  If neither of these two things had occurred, then the render must have been triggered by a roll of the dice, since this is the only other kind of action that could trigger an update.
@@ -51,6 +51,7 @@ This basically checked to see whether, the update was triggered due to a change 
 Then, after checking making sure that there was no change in length or size (i.e. `lengthChange === false && sidesChange===false`) only then would the app be allowed to post to the API.  The complete code of componentDidUpdate() is below:
 
 ```
+
   componentDidUpdate(prevProps, prevState){
     let lengthChange
     let sidesChange
@@ -71,6 +72,7 @@ Then, after checking making sure that there was no change in length or size (i.e
     }
     sidesChange === false && lengthChange === false ? postRollHistory(this.props.dice) : null
   }
+	
 	```
 	
 I had spent an entire day trying to figure this out, so, upon discovering that this approach worked (!!!!) I was elated. Since I would expect that this sort of problem is a common stumbling block for React/Redux beginners, I hope that this post gives some of my readers ideas on how to approach it.  
