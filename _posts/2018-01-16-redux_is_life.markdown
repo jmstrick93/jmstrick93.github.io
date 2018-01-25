@@ -56,9 +56,7 @@ Then, after checking making sure that there was no change in length or size (i.e
     let lengthChange
     let sidesChange
     prevProps.dice.length === this.props.dice.length ? lengthChange = false : lengthChange = true;
-
     if (lengthChange === false && this.props.dice.length > 0){
-
       let index = 0
       for (const die of this.props.dice){
         if (die.sides !== prevProps.dice[index].sides) {
@@ -72,7 +70,6 @@ Then, after checking making sure that there was no change in length or size (i.e
     }
     sidesChange === false && lengthChange === false ? postRollHistory(this.props.dice) : null
   }
-	
 	```
 	
 I had spent an entire day trying to figure this out, so, upon discovering that this approach worked (!!!!) I was elated. Since I would expect that this sort of problem is a common stumbling block for React/Redux beginners, I hope that this post gives some of my readers ideas on how to approach it.  
