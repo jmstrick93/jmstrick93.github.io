@@ -23,14 +23,11 @@ The fix, however, turned out to be quite simple.
 First, I wrote some code designed to determine what kind of state and/or props change had taken place:
 
 ```
-...
 componentDidUpdate(prevProps, prevState){
     let lengthChange
     let sidesChange
     prevProps.dice.length === this.props.dice.length ? lengthChange = false : lengthChange = true;
-
     if (lengthChange === false && this.props.dice.length > 0){
-
       let index = 0
       for (const die of this.props.dice){
         if (die.sides !== prevProps.dice[index].sides) {
@@ -42,7 +39,6 @@ componentDidUpdate(prevProps, prevState){
         };
       };
     }
-		
 ...
 ```
 
